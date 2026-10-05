@@ -1,0 +1,15 @@
+name: Sync APK to Release
+on:
+  push:
+    branches: [main]
+    paths: ['apk/**']
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Upload APK to Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: apk/*.apk
+          fail_on_unmatched_files: false
